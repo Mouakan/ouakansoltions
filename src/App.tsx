@@ -452,7 +452,7 @@ function aDays() {
   return out;
 }
 const A_SLOTS = ['09:00', '10:00', '11:00', '14:00', '15:00', '16:00', '17:00'];
-const TOTAL_STEPS = 12;
+const TOTAL_STEPS = 11;
 interface BMsg { from: 'bot' | 'user'; text: string }
 
 function Assistant() {
@@ -525,7 +525,7 @@ function Assistant() {
           {step > 0 && <div className="asst-prog"><div className="asst-prog-bar" style={{ width: `${progress}%` }} /></div>}
 
           {/* messages (scrollable) */}
-          <div className="asst-msgs" ref={scrollRef}>
+          <div className="asst-msgs" ref={scrollRef} role="log" aria-live="polite">
             {msgs.map((m, i) => (
               <div key={i} className={`asst-row ${m.from}`}>
                 <div className={`asst-bubble ${m.from}`}>{m.text}</div>
@@ -539,8 +539,8 @@ function Assistant() {
             {step === 0 && !done && <button className="btn-p" style={{ width: '100%' }} onClick={start}>Démarrer →</button>}
             {step === 1 && <div className="chip-wrap">{A_SUBJECTS.map(([ic, k]) => <button key={k} className="chip" onClick={() => pick('Sujet', k, 2)}>{ic} {k}</button>)}</div>}
             {step === 2 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Votre besoin" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Besoin', 3)} placeholder="Votre besoin…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Besoin', 3)} aria-label="Envoyer">→</button></div>
               <button className="asst-skip" onClick={() => skip(3)}>Passer cette étape →</button>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Votre besoin" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Besoin', 3)} placeholder="Votre besoin…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Besoin', 3)} aria-label="Envoyer">→</button></div>
             </div>}
             {step === 3 && <div className="chip-wrap">{A_TEAM.map(t => <button key={t} className="chip" onClick={() => pick('Equipe', t, 4)}>{t}</button>)}</div>}
             {step === 4 && <div className="chip-wrap">{A_URGENCY.map(u => <button key={u} className="chip" onClick={() => pick('Urgence', u, 5)}>{u}</button>)}</div>}
@@ -549,8 +549,8 @@ function Assistant() {
               <div className="asst-req">Requis pour préparer votre rendez-vous</div>
             </div>}
             {step === 6 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Nom de l'entreprise" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Entreprise', 7)} placeholder="Nom de l'entreprise…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Entreprise', 7)} aria-label="Envoyer">→</button></div>
               <button className="asst-skip" onClick={() => skip(7)}>Passer cette étape →</button>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Nom de l'entreprise" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Entreprise', 7)} placeholder="Nom de l'entreprise…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Entreprise', 7)} aria-label="Envoyer">→</button></div>
             </div>}
             {step === 7 && <div className="asst-field">
               <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="email" inputMode="email" aria-label="Email professionnel" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && emailOk(text.trim()) && submitText('Email', 8)} placeholder="email@entreprise.fr" /><button className="chat-send" style={{ opacity: emailOk(text.trim()) ? 1 : .4 }} disabled={!emailOk(text.trim())} onClick={() => submitText('Email', 8)} aria-label="Envoyer">→</button></div>
@@ -568,7 +568,7 @@ function Assistant() {
           </div>
         </div>
       )}
-      <button onClick={() => setOpen(v => !v)} aria-label="Ouvrir l'assistant" className="asst-fab" style={{ transform: open ? 'rotate(90deg)' : 'none' }}>
+      <button onClick={() => setOpen(v => !v)} aria-label={open ? "Fermer l'assistant" : "Ouvrir l'assistant"} aria-expanded={open} className="asst-fab" style={{ transform: open ? 'rotate(90deg)' : 'none' }}>
         {pulse && !open && <span className="asst-ring" />}
         {open ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg> : <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg>}
       </button>

@@ -301,7 +301,7 @@ nav.scr { background:rgba(250,251,253,.88); backdrop-filter:blur(18px); border-b
 .chat-in { flex:1; min-width:0; background:var(--bg); border:1.5px solid var(--line2); border-radius:10px; padding:12px 13px; color:var(--ink); font-size:16px; outline:none; font-family:'Inter',sans-serif; }
 .chat-in:focus { border-color:var(--blue); box-shadow:0 0 0 3px var(--blue-soft); }
 .chat-send { width:46px; border-radius:10px; background:var(--blue); border:none; color:#fff; font-size:19px; cursor:pointer; flex-shrink:0; }
-.asst-skip { background:none; border:none; color:var(--muted); font-size:12.5px; font-weight:600; cursor:pointer; padding:6px; text-align:center; text-decoration:underline; text-underline-offset:2px; }
+.asst-skip { background:none; border:none; color:var(--ink2); font-size:12.5px; font-weight:600; cursor:pointer; padding:4px 0 2px; text-align:left; text-decoration:underline; text-underline-offset:2px; align-self:flex-start; }
 .asst-skip:hover { color:var(--blue); }
 .asst-req { font-size:11.5px; color:var(--muted); text-align:center; }
 .asst-sending { text-align:center; font-size:12.5px; color:var(--muted); margin:8px 0 0; }

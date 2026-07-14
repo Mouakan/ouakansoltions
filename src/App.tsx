@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { Bot, Zap, BarChart3, Monitor, Link2, GraduationCap, Handshake, Search, Target, Wrench, Rocket, RefreshCw, Globe, Lock, FileText, Ban, Key, RotateCcw, Video, Phone, MessageCircle, AlertTriangle, PenLine, Star } from 'lucide-react';
 import { MentionsLegales, PolitiqueConfidentialite, CGV, Cookies } from './Legal';
 import CookieConsent from './CookieConsent';
 import './index.css';
@@ -175,12 +176,12 @@ function Agents() {
 
 /* ═══ SERVICES ═══ */
 const SERVICES = [
-  { ic: '🤖', t: 'Agents IA sur mesure', d: "Des collaborateurs virtuels conçus pour vos processus : emails, prospection, documents, veille, support client.", tags: ['Agents autonomes', 'IA générative', 'Sur mesure'] },
-  { ic: '⚡', t: 'Automatisation de workflows', d: "Vos outils connectés entre eux, vos tâches répétitives éliminées. Sans changer vos logiciels existants.", tags: ['n8n', 'Make', 'API'] },
-  { ic: '📊', t: 'Data & reporting', d: "Vos données consolidées, fiabilisées et transformées en tableaux de bord clairs, actualisés automatiquement.", tags: ['Consolidation', 'Dashboards', 'Reporting auto'] },
-  { ic: '💻', t: 'Applications & outils métier', d: "Sites web, plateformes SaaS et applications internes modernes, pensés pour vos équipes et vos clients.", tags: ['Web', 'SaaS', 'Apps métier'] },
-  { ic: '🔗', t: 'Intégration CRM / ERP', d: "Synchronisation de vos données entre CRM, ERP, emails et tableurs. Une seule source de vérité.", tags: ['CRM', 'ERP', 'Synchronisation'] },
-  { ic: '🎓', t: 'Transition IA & conseil', d: "Audit de maturité, feuille de route IA, formation de vos équipes et accompagnement continu.", tags: ['Audit', 'Formation', 'Accompagnement'] },
+  { ic: Bot, t: 'Agents IA sur mesure', d: "Des collaborateurs virtuels conçus pour vos processus : emails, prospection, documents, veille, support client.", tags: ['Agents autonomes', 'IA générative', 'Sur mesure'] },
+  { ic: Zap, t: 'Automatisation de workflows', d: "Vos outils connectés entre eux, vos tâches répétitives éliminées. Sans changer vos logiciels existants.", tags: ['n8n', 'Make', 'API'] },
+  { ic: BarChart3, t: 'Data & reporting', d: "Vos données consolidées, fiabilisées et transformées en tableaux de bord clairs, actualisés automatiquement.", tags: ['Consolidation', 'Dashboards', 'Reporting auto'] },
+  { ic: Monitor, t: 'Applications & outils métier', d: "Sites web, plateformes SaaS et applications internes modernes, pensés pour vos équipes et vos clients.", tags: ['Web', 'SaaS', 'Apps métier'] },
+  { ic: Link2, t: 'Intégration CRM / ERP', d: "Synchronisation de vos données entre CRM, ERP, emails et tableurs. Une seule source de vérité.", tags: ['CRM', 'ERP', 'Synchronisation'] },
+  { ic: GraduationCap, t: 'Transition IA & conseil', d: "Audit de maturité, feuille de route IA, formation de vos équipes et accompagnement continu.", tags: ['Audit', 'Formation', 'Accompagnement'] },
 ];
 function Services() {
   return (
@@ -194,7 +195,7 @@ function Services() {
         <div className="svc-grid">
           {SERVICES.map(s => (
             <div key={s.t} className="card svc-card">
-              <div className="svc-ic">{s.ic}</div>
+              <div className="svc-ic"><s.ic size={22} strokeWidth={2} /></div>
               <h3 className="svc-t">{s.t}</h3>
               <p className="svc-d">{s.d}</p>
               <div className="svc-tags">{s.tags.map(t => <span key={t} className="svc-tag">{t}</span>)}</div>
@@ -208,13 +209,13 @@ function Services() {
 
 /* ═══ MÉTHODE ═══ */
 const STEPS = [
-  ['🤝', 'Visite & écoute', "Sur site ou en visio : on observe vos équipes travailler et on identifie les irritants du quotidien."],
-  ['🔍', 'Audit des processus', "Cartographie de vos tâches répétitives, chiffrage du temps perdu et des gains potentiels."],
-  ['🎯', 'Priorisation ROI', "On sélectionne ensemble les automatisations au meilleur rapport impact / effort."],
-  ['🛠️', 'Conception sur mesure', "Développement de vos agents IA et automatisations, avec démos régulières et prototype sous 48h."],
-  ['🚀', 'Déploiement & formation', "Mise en production sécurisée et formation de vos équipes pour une adoption totale."],
-  ['🔄', 'Suivi & amélioration continue', "Maintenance, monitoring des performances et évolutions au fil de vos besoins."],
-];
+  [Handshake, 'Visite & écoute', "Sur site ou en visio : on observe vos équipes travailler et on identifie les irritants du quotidien."],
+  [Search, 'Audit des processus', "Cartographie de vos tâches répétitives, chiffrage du temps perdu et des gains potentiels."],
+  [Target, 'Priorisation ROI', "On sélectionne ensemble les automatisations au meilleur rapport impact / effort."],
+  [Wrench, 'Conception sur mesure', "Développement de vos agents IA et automatisations, avec démos régulières et prototype sous 48h."],
+  [Rocket, 'Déploiement & formation', "Mise en production sécurisée et formation de vos équipes pour une adoption totale."],
+  [RefreshCw, 'Suivi & amélioration continue', "Maintenance, monitoring des performances et évolutions au fil de vos besoins."],
+] as const;
 function Methode() {
   return (
     <section id="methode" className="sec">
@@ -224,10 +225,10 @@ function Methode() {
           <h2 className="h-sec">Un accompagnement de bout en bout, pas juste un outil livré</h2>
         </div>
         <div className="proc-wrap">
-          {STEPS.map(([ic, t, d], i) => (
+          {STEPS.map(([Ic, t, d], i) => (
             <div key={t} className="card proc-card">
               <span className="proc-n fd">{String(i + 1).padStart(2, '0')}</span>
-              <div className="proc-ic">{ic}</div>
+              <div className="proc-ic"><Ic size={21} strokeWidth={2} /></div>
               <h3 className="proc-t">{t}</h3>
               <p className="proc-d">{d}</p>
             </div>
@@ -263,7 +264,7 @@ function Testimonials() {
         <div className="marquee-track">
           {doubled.map(([av, n, r, q], i) => (
             <div key={i} className="card testi-c marquee-item">
-              <div className="testi-stars">★★★★★</div>
+              <div className="testi-stars">{Array.from({ length: 5 }).map((_, si) => <Star key={si} size={14} fill="currentColor" strokeWidth={0} />)}</div>
               <p className="testi-q">"{q}"</p>
               <div className="testi-a"><div className="testi-av">{av}</div><div><div className="testi-n">{n}</div><div className="testi-r">{r}</div></div></div>
             </div>
@@ -280,13 +281,13 @@ function Security() {
     <section className="sec sec-dark">
       <div className="container">
         <div className="sec-head">
-          <span className="kick">🔒 Sécurité & confidentialité</span>
+          <span className="kick"><Lock size={12} /> Sécurité & confidentialité</span>
           <h2 className="h-sec">Vos données sont votre patrimoine. On les traite comme tel.</h2>
           <p className="sub">La confiance est la base de chaque mission. Voici nos engagements, sans exception.</p>
         </div>
         <div className="secu-grid">
-          {[['🇪🇺', 'Conformité RGPD stricte', "Vos données sont traitées conformément au RGPD, avec des prestataires soumis à des garanties contractuelles reconnues."], ['🔐', 'Chiffrement systématique', "Données chiffrées en transit et au repos. Accès restreints et tracés."], ['📄', 'NDA dès le premier échange', "Un accord de confidentialité signé avant même de voir vos fichiers."], ['🚫', 'Zéro revente, zéro partage', "Vos données ne servent jamais à entraîner des modèles ni à quoi que ce soit d'autre."], ['🔑', 'Vous restez propriétaire', "Code, automatisations et données : tout vous appartient à 100% en fin de mission."], ['🧯', 'Réversibilité garantie', "Documentation complète livrée. Vous reprenez la main librement, quand vous voulez."]].map(([ic, t, d]) => (
-            <div key={t} className="secu-card"><div className="secu-ic">{ic}</div><div className="secu-t">{t}</div><div className="secu-d">{d}</div></div>
+          {([[Globe, 'Conformité RGPD stricte', "Vos données sont traitées conformément au RGPD, avec des prestataires soumis à des garanties contractuelles reconnues."], [Lock, 'Chiffrement systématique', "Données chiffrées en transit et au repos. Accès restreints et tracés."], [FileText, 'NDA dès le premier échange', "Un accord de confidentialité signé avant même de voir vos fichiers."], [Ban, 'Zéro revente, zéro partage', "Vos données ne servent jamais à entraîner des modèles ni à quoi que ce soit d'autre."], [Key, 'Vous restez propriétaire', "Code, automatisations et données : tout vous appartient à 100% en fin de mission."], [RotateCcw, 'Réversibilité garantie', "Documentation complète livrée. Vous reprenez la main librement, quand vous voulez."]] as const).map(([Ic, t, d], i) => (
+            <div key={i} className="secu-card"><div className="secu-ic"><Ic size={22} strokeWidth={2} /></div><div className="secu-t">{t}</div><div className="secu-d">{d}</div></div>
           ))}
         </div>
       </div>
@@ -377,8 +378,8 @@ function RDV() {
             {step === 1 && (<div>
               <div className="rdv-lbl">Format du rendez-vous</div>
               <div className="rdv-modes">
-                <button className={`rdv-mode ${mode === 'visio' ? 'sel' : ''}`} onClick={() => setMode('visio')}><span style={{ fontSize: 20 }}>🎥</span><div><div style={{ fontWeight: 600, fontSize: 14 }}>Visioconférence</div><div style={{ fontSize: 12, color: 'var(--muted)' }}>Lien envoyé par email</div></div></button>
-                <button className={`rdv-mode ${mode === 'tel' ? 'sel' : ''}`} onClick={() => setMode('tel')}><span style={{ fontSize: 20 }}>📞</span><div><div style={{ fontWeight: 600, fontSize: 14 }}>Appel téléphonique</div><div style={{ fontSize: 12, color: 'var(--muted)' }}>On vous appelle</div></div></button>
+                <button className={`rdv-mode ${mode === 'visio' ? 'sel' : ''}`} onClick={() => setMode('visio')}><Video size={20} /><div><div style={{ fontWeight: 600, fontSize: 14 }}>Visioconférence</div><div style={{ fontSize: 12, color: 'var(--muted)' }}>Lien envoyé par email</div></div></button>
+                <button className={`rdv-mode ${mode === 'tel' ? 'sel' : ''}`} onClick={() => setMode('tel')}><Phone size={20} /><div><div style={{ fontWeight: 600, fontSize: 14 }}>Appel téléphonique</div><div style={{ fontSize: 12, color: 'var(--muted)' }}>On vous appelle</div></div></button>
               </div>
               <div className="rdv-lbl">Choisissez une date</div>
               <div className="rdv-days">{days.map((d, i) => (<button key={i} className={`rdv-day ${selDay === i ? 'sel' : ''}`} onClick={() => { setSelDay(i); setSelSlot(null); }}><span className="rdv-day-n">{d.day}</span><span className="rdv-day-d">{d.label}</span></button>))}</div>
@@ -386,7 +387,7 @@ function RDV() {
               <button className="btn-p" style={{ width: '100%', marginTop: 24, padding: 15, opacity: canNext1 ? 1 : .45, cursor: canNext1 ? 'pointer' : 'not-allowed' }} disabled={!canNext1} onClick={() => setStep(2)}>Continuer →</button>
             </div>)}
             {step === 2 && (<div className="f-in">
-              <div className="rdv-recap">🗓️ <b>{days[selDay!]?.day} {days[selDay!]?.label} à {selSlot}</b> · {mode === 'visio' ? '🎥 Visio' : '📞 Appel'}<button onClick={() => setStep(1)} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--blue)', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Modifier</button></div>
+              <div className="rdv-recap">🗓️ <b>{days[selDay!]?.day} {days[selDay!]?.label} à {selSlot}</b> · {mode === 'visio' ? <span className="rdv-recap-mode"><Video size={14} /> Visio</span> : <span className="rdv-recap-mode"><Phone size={14} /> Appel</span>}<button onClick={() => setStep(1)} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--blue)', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Modifier</button></div>
               <div className="f-row">
                 <div><label htmlFor="rdv-name" className="sr-only">Nom et prénom</label><input id="rdv-name" className="f-i" name="name" placeholder="Nom & prénom *" value={f.name} onChange={ch} /></div>
                 <div><label htmlFor="rdv-email" className="sr-only">Email professionnel</label><input id="rdv-email" className="f-i" name="email" type="email" placeholder="Email professionnel *" value={f.email} onChange={ch} /></div>
@@ -399,7 +400,7 @@ function RDV() {
               <select id="rdv-need" className="f-i" name="need" value={f.need} onChange={ch}><option value="">Votre besoin principal</option><option>Automatiser des tâches répétitives</option><option>Agent IA sur mesure</option><option>Data & reporting</option><option>Site web / application</option><option>Intégration CRM / ERP</option><option>Je ne sais pas encore — audit d'abord</option></select>
               <label htmlFor="rdv-message" className="sr-only">Décrivez votre situation (optionnel)</label>
               <textarea id="rdv-message" className="f-i f-ta" name="message" rows={3} placeholder="Décrivez votre situation (optionnel)" value={f.message} onChange={ch} />
-              {err && <div className="f-err">⚠️ {err}</div>}
+              {err && <div className="f-err"><AlertTriangle size={15} /> {err}</div>}
               <button className="btn-p" style={{ width: '100%', padding: 15, fontSize: 15.5, opacity: canSend ? 1 : .45, cursor: canSend ? 'pointer' : 'not-allowed' }} disabled={!canSend} onClick={submit}>{sending ? 'Envoi en cours…' : 'Confirmer mon rendez-vous →'}</button>
               <p className="f-note">Sans engagement · Confirmation par email · NDA sur demande · RGPD conforme</p>
             </div>)}
@@ -440,7 +441,7 @@ function Footer() {
 }
 
 /* ═══ ASSISTANT GUIDÉ — qualifie le lead & l'envoie par mail ═══ */
-const A_SUBJECTS = [['🔍', 'Audit de mon entreprise'], ['🤖', 'Agent IA sur mesure'], ['⚡', 'Automatisation de tâches'], ['💻', 'Création de site ou application'], ['📊', 'Data & reporting'], ['🔗', 'Intégration CRM / ERP'], ['✏️', 'Autre (à préciser)']];
+const A_SUBJECTS = [[Search, 'Audit de mon entreprise'], [Bot, 'Agent IA sur mesure'], [Zap, 'Automatisation de tâches'], [Monitor, 'Création de site ou application'], [BarChart3, 'Data & reporting'], [Link2, 'Intégration CRM / ERP'], [PenLine, 'Autre (à préciser)']] as const;
 const A_TEAM = ['Juste moi / indépendant', '2 à 10', '11 à 50', '50+'];
 const A_URGENCY = ['Dès que possible', 'Sous 1 mois', 'Dans 1 à 3 mois', 'Je me renseigne'];
 const A_FORMAT = ['Visioconférence', 'Appel téléphonique'];
@@ -514,7 +515,7 @@ function Assistant() {
         <div className="asst-win">
           {/* header */}
           <div className="asst-head">
-            <div className="asst-avatar">💬</div>
+            <div className="asst-avatar"><MessageCircle size={19} /></div>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div className="fd asst-title">Assistant Ouakan Solutions</div>
               <div className="asst-status"><span className="asst-dot" />Préparez votre projet en 1 min</div>
@@ -531,13 +532,13 @@ function Assistant() {
                 <div className={`asst-bubble ${m.from}`}>{m.text}</div>
               </div>
             ))}
-            {err && <div className="f-err" style={{ fontSize: 13 }}>⚠️ {err}</div>}
+            {err && <div className="f-err" style={{ fontSize: 13 }}><AlertTriangle size={14} /> {err}</div>}
           </div>
 
           {/* interaction zone (fixe, ne scrolle pas avec les messages) */}
           <div className="asst-zone">
             {step === 0 && !done && <button className="btn-p" style={{ width: '100%' }} onClick={start}>Démarrer →</button>}
-            {step === 1 && <div className="chip-wrap">{A_SUBJECTS.map(([ic, k]) => <button key={k} className="chip" onClick={() => pick('Sujet', k, 2)}>{ic} {k}</button>)}</div>}
+            {step === 1 && <div className="chip-wrap">{A_SUBJECTS.map(([Ic, k]) => <button key={k} className="chip" onClick={() => pick('Sujet', k, 2)}><Ic size={15} /> {k}</button>)}</div>}
             {step === 2 && <div className="asst-field">
               <button className="asst-skip" onClick={() => skip(3)}>Passer cette étape →</button>
               <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Votre besoin" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Besoin', 3)} placeholder="Votre besoin…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Besoin', 3)} aria-label="Envoyer">→</button></div>
@@ -560,7 +561,7 @@ function Assistant() {
               <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="tel" inputMode="tel" aria-label="Numéro de téléphone" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim().length > 5 && submitText('Tel', 9)} placeholder="06 12 34 56 78" /><button className="chat-send" style={{ opacity: text.trim().length > 5 ? 1 : .4 }} disabled={text.trim().length <= 5} onClick={() => submitText('Tel', 9)} aria-label="Envoyer">→</button></div>
               <div className="asst-req">Requis pour vous joindre</div>
             </div>}
-            {step === 9 && <div className="chip-wrap">{A_FORMAT.map(fm => <button key={fm} className="chip" onClick={() => pick('Format', fm, 10)}>{fm === 'Visioconférence' ? '🎥' : '📞'} {fm}</button>)}</div>}
+            {step === 9 && <div className="chip-wrap">{A_FORMAT.map(fm => <button key={fm} className="chip" onClick={() => pick('Format', fm, 10)}>{fm === 'Visioconférence' ? <Video size={15} /> : <Phone size={15} />} {fm}</button>)}</div>}
             {step === 10 && <div className="chip-wrap">{days.map(d => <button key={d.label} className="chip" onClick={() => pick('Jour', `${d.day} ${d.label}`, 11)}>{d.day} {d.label}</button>)}</div>}
             {step === 11 && !done && <div className="chip-grid">{A_SLOTS.map(s => <button key={s} className="chip chip-sm" disabled={sending} onClick={() => finish(s)}>{s}</button>)}</div>}
             {done && <button className="btn-o" style={{ width: '100%' }} onClick={restart}>Nouvelle demande</button>}

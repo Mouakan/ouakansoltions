@@ -1,4 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { MentionsLegales, PolitiqueConfidentialite, CGV, Cookies } from './Legal';
+import CookieConsent from './CookieConsent';
 import './index.css';
 
 /* ═══ CONFIG — à personnaliser (voir README) ═══ */
@@ -84,7 +87,7 @@ function Hero() {
           <button className="btn-o" style={{ fontSize: 16, padding: '14px 30px' }} onClick={() => document.getElementById('agents')?.scrollIntoView({ behavior: 'smooth' })}>Découvrir les agents IA</button>
         </div>
         <div className="hero-proof">
-          {[['-70%', 'de temps sur les tâches répétitives'], ['15h+', 'gagnées par semaine et par équipe'], ['48h', 'pour un premier prototype'], ['100%', 'RGPD & données en Europe']].map(([n, l]) => (
+          {[['-70%', 'de temps sur les tâches répétitives'], ['15h+', 'gagnées par semaine et par équipe'], ['48h', 'pour un premier prototype'], ['100%', 'Conforme RGPD']].map(([n, l]) => (
             <div key={l} className="proof-i"><div className="proof-n">{n}</div><div className="proof-l">{l}</div></div>
           ))}
         </div>
@@ -139,12 +142,13 @@ const AGENTS = [
 ];
 function Agents() {
   return (
-    <section id="agents" className="sec sec-dark">
+    <section id="agents" className="sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Nos agents IA</span>
           <h2 className="h-sec">Des agents IA que nous avons créés pour d'autres entreprises</h2>
           <p className="sub">Voici quelques exemples concrets d'agents développés sur mesure pour nos clients. Le vôtre sera unique : conçu pour vos processus, vos outils et vos règles métier.</p>
+          <p className="sec-disclaimer">Exemples représentatifs de missions type, à titre d'illustration — profils illustratifs.</p>
         </div>
         <div className="agents-grid">
           {AGENTS.map(a => (
@@ -180,7 +184,7 @@ const SERVICES = [
 ];
 function Services() {
   return (
-    <section id="services" className="sec">
+    <section id="services" className="sec sec-dark">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Nos services</span>
@@ -213,7 +217,7 @@ const STEPS = [
 ];
 function Methode() {
   return (
-    <section id="methode" className="sec sec-dark">
+    <section id="methode" className="sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Notre méthode</span>
@@ -247,11 +251,12 @@ const TESTIS = [
 function Testimonials() {
   const doubled = [...TESTIS, ...TESTIS];
   return (
-    <section className="sec testi-sec">
+    <section className="sec sec-dark testi-sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Ils nous font confiance</span>
           <h2 className="h-sec">Des résultats concrets, mesurés</h2>
+          <p className="sec-disclaimer">Exemples représentatifs des résultats obtenus sur nos missions.</p>
         </div>
       </div>
       <div className="marquee">
@@ -280,7 +285,7 @@ function Security() {
           <p className="sub">La confiance est la base de chaque mission. Voici nos engagements, sans exception.</p>
         </div>
         <div className="secu-grid">
-          {[['🇪🇺', 'RGPD & hébergement UE', "Vos données restent en Europe, traitées en conformité stricte avec le RGPD."], ['🔐', 'Chiffrement systématique', "Données chiffrées en transit et au repos. Accès restreints et tracés."], ['📄', 'NDA dès le premier échange', "Un accord de confidentialité signé avant même de voir vos fichiers."], ['🚫', 'Zéro revente, zéro partage', "Vos données ne servent jamais à entraîner des modèles ni à quoi que ce soit d'autre."], ['🔑', 'Vous restez propriétaire', "Code, automatisations et données : tout vous appartient à 100% en fin de mission."], ['🧯', 'Réversibilité garantie', "Documentation complète livrée. Vous reprenez la main librement, quand vous voulez."]].map(([ic, t, d]) => (
+          {[['🇪🇺', 'Conformité RGPD stricte', "Vos données sont traitées conformément au RGPD, avec des prestataires soumis à des garanties contractuelles reconnues."], ['🔐', 'Chiffrement systématique', "Données chiffrées en transit et au repos. Accès restreints et tracés."], ['📄', 'NDA dès le premier échange', "Un accord de confidentialité signé avant même de voir vos fichiers."], ['🚫', 'Zéro revente, zéro partage', "Vos données ne servent jamais à entraîner des modèles ni à quoi que ce soit d'autre."], ['🔑', 'Vous restez propriétaire', "Code, automatisations et données : tout vous appartient à 100% en fin de mission."], ['🧯', 'Réversibilité garantie', "Documentation complète livrée. Vous reprenez la main librement, quand vous voulez."]].map(([ic, t, d]) => (
             <div key={t} className="secu-card"><div className="secu-ic">{ic}</div><div className="secu-t">{t}</div><div className="secu-d">{d}</div></div>
           ))}
         </div>
@@ -294,9 +299,9 @@ const FAQS = [
   ["Combien coûte une mission d'automatisation ?", "Chaque projet est chiffré après l'audit gratuit. Vous connaissez toujours le prix exact avant de vous engager, et le ROI estimé avec."],
   ["Devons-nous changer nos logiciels actuels ?", "Non. Nous nous branchons sur vos outils existants. L'objectif est d'automatiser autour de ce que vos équipes connaissent déjà."],
   ["Traitez-vous aussi les petites missions ciblées ?", "Oui, absolument. Une automatisation ponctuelle, un fichier à fiabiliser, un rapport à automatiser : nous prenons aussi les missions courtes, avec la même rigueur."],
-  ["Que deviennent nos données confidentielles ?", "Elles restent les vôtres. NDA signé avant toute mission, traitement RGPD, hébergement européen, et aucune donnée n'est utilisée pour autre chose que votre projet."],
+  ["Que deviennent nos données confidentielles ?", "Elles restent les vôtres. NDA signé avant toute mission, traitement conforme au RGPD via des prestataires sous garanties contractuelles, et aucune donnée n'est utilisée pour autre chose que votre projet."],
   ["En combien de temps voit-on les premiers résultats ?", "Un prototype fonctionnel est présenté sous 48h à 2 semaines selon la complexité. Les automatisations simples sont en production en moins de 15 jours."],
-  ["Et si l'automatisation tombe en panne ?", "Chaque livraison inclut une garantie et un monitoring. Nos contrats de maintenance assurent une intervention rapide, et la documentation complète vous garantit une totale réversibilité."],
+  ["Et si l'automatisation tombe en panne ?", "Chaque livraison inclut une garantie de 30 jours sur la correction des bugs bloquants. Au-delà, un contrat de maintenance optionnel peut prendre le relais pour un suivi continu, et la documentation complète vous garantit une totale réversibilité."],
   ["Formez-vous nos équipes ?", "Oui, c'est inclus dans chaque déploiement. Vos équipes sont formées à l'utilisation et un support reste disponible ensuite."],
 ];
 function FAQ() {
@@ -382,10 +387,18 @@ function RDV() {
             </div>)}
             {step === 2 && (<div className="f-in">
               <div className="rdv-recap">🗓️ <b>{days[selDay!]?.day} {days[selDay!]?.label} à {selSlot}</b> · {mode === 'visio' ? '🎥 Visio' : '📞 Appel'}<button onClick={() => setStep(1)} style={{ marginLeft: 'auto', background: 'none', border: 'none', color: 'var(--blue)', cursor: 'pointer', fontSize: 13, fontWeight: 600 }}>Modifier</button></div>
-              <div className="f-row"><input className="f-i" name="name" placeholder="Nom & prénom *" value={f.name} onChange={ch} /><input className="f-i" name="email" type="email" placeholder="Email professionnel *" value={f.email} onChange={ch} /></div>
-              <div className="f-row"><input className="f-i" name="phone" type="tel" placeholder="Téléphone *" value={f.phone} onChange={ch} /><input className="f-i" name="company" placeholder="Entreprise (optionnel)" value={f.company} onChange={ch} /></div>
-              <select className="f-i" name="need" value={f.need} onChange={ch}><option value="">Votre besoin principal</option><option>Automatiser des tâches répétitives</option><option>Agent IA sur mesure</option><option>Data & reporting</option><option>Site web / application</option><option>Intégration CRM / ERP</option><option>Je ne sais pas encore — audit d'abord</option></select>
-              <textarea className="f-i f-ta" name="message" rows={3} placeholder="Décrivez votre situation (optionnel)" value={f.message} onChange={ch} />
+              <div className="f-row">
+                <div><label htmlFor="rdv-name" className="sr-only">Nom et prénom</label><input id="rdv-name" className="f-i" name="name" placeholder="Nom & prénom *" value={f.name} onChange={ch} /></div>
+                <div><label htmlFor="rdv-email" className="sr-only">Email professionnel</label><input id="rdv-email" className="f-i" name="email" type="email" placeholder="Email professionnel *" value={f.email} onChange={ch} /></div>
+              </div>
+              <div className="f-row">
+                <div><label htmlFor="rdv-phone" className="sr-only">Téléphone</label><input id="rdv-phone" className="f-i" name="phone" type="tel" placeholder="Téléphone *" value={f.phone} onChange={ch} /></div>
+                <div><label htmlFor="rdv-company" className="sr-only">Entreprise (optionnel)</label><input id="rdv-company" className="f-i" name="company" placeholder="Entreprise (optionnel)" value={f.company} onChange={ch} /></div>
+              </div>
+              <label htmlFor="rdv-need" className="sr-only">Votre besoin principal</label>
+              <select id="rdv-need" className="f-i" name="need" value={f.need} onChange={ch}><option value="">Votre besoin principal</option><option>Automatiser des tâches répétitives</option><option>Agent IA sur mesure</option><option>Data & reporting</option><option>Site web / application</option><option>Intégration CRM / ERP</option><option>Je ne sais pas encore — audit d'abord</option></select>
+              <label htmlFor="rdv-message" className="sr-only">Décrivez votre situation (optionnel)</label>
+              <textarea id="rdv-message" className="f-i f-ta" name="message" rows={3} placeholder="Décrivez votre situation (optionnel)" value={f.message} onChange={ch} />
               {err && <div className="f-err">⚠️ {err}</div>}
               <button className="btn-p" style={{ width: '100%', padding: 15, fontSize: 15.5, opacity: canSend ? 1 : .45, cursor: canSend ? 'pointer' : 'not-allowed' }} disabled={!canSend} onClick={submit}>{sending ? 'Envoi en cours…' : 'Confirmer mon rendez-vous →'}</button>
               <p className="f-note">Sans engagement · Confirmation par email · NDA sur demande · RGPD conforme</p>
@@ -407,12 +420,20 @@ function Footer() {
           <div>
             <a href="#" className="logo foot-logo"><div className="logo-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.4" strokeLinecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><span className="logo-tx" style={{ color: '#fff' }}>Ouakan<b style={{ color: '#7C9AFF' }}> Solutions</b></span></a>
             <p className="foot-about">Agence IA & Automatisation. Nous transformons vos tâches répétitives en processus intelligents.</p>
+            <a href="mailto:ouakan.solutions@gmail.com" className="foot-mail">ouakan.solutions@gmail.com</a>
           </div>
           <div><div className="foot-ct">Services</div>{[['Agents IA sur mesure', 'agents'], ['Automatisation', 'services'], ['Data & reporting', 'services'], ['Applications métier', 'services']].map(([l, id]) => <button key={l} className="foot-l" onClick={() => go(id)}>{l}</button>)}</div>
           <div><div className="foot-ct">Entreprise</div>{[['Notre méthode', 'methode'], ['FAQ', 'faq'], ['Prendre rendez-vous', 'rdv']].map(([l, id]) => <button key={l} className="foot-l" onClick={() => go(id)}>{l}</button>)}</div>
-          <div><div className="foot-ct">Légal</div>{['Mentions légales', 'Politique RGPD', 'CGV', 'Cookies'].map(l => <a key={l} href="#" className="foot-l">{l}</a>)}</div>
+          <div>
+            <div className="foot-ct">Légal</div>
+            <Link to="/mentions-legales" className="foot-l">Mentions légales</Link>
+            <Link to="/politique-confidentialite" className="foot-l">Politique de confidentialité</Link>
+            <Link to="/cgv" className="foot-l">CGV</Link>
+            <Link to="/cookies" className="foot-l">Cookies</Link>
+            <button className="foot-l" onClick={() => window.dispatchEvent(new Event('open-cookie-settings'))}>Gérer les cookies</button>
+          </div>
         </div>
-        <div className="foot-b"><p>© 2025 Ouakan Solutions — SIRET 106 204 662 00014</p><p>Données hébergées en Europe · RGPD conforme</p></div>
+        <div className="foot-b"><p>© 2025 Ouakan Solutions — SIRET 106 204 662 00014</p><p>Conforme RGPD</p></div>
       </div>
     </footer>
   );
@@ -423,7 +444,6 @@ const A_SUBJECTS = [['🔍', 'Audit de mon entreprise'], ['🤖', 'Agent IA sur 
 const A_TEAM = ['Juste moi / indépendant', '2 à 10', '11 à 50', '50+'];
 const A_URGENCY = ['Dès que possible', 'Sous 1 mois', 'Dans 1 à 3 mois', 'Je me renseigne'];
 const A_FORMAT = ['Visioconférence', 'Appel téléphonique'];
-const A_SOURCE = ['LinkedIn', 'Recherche Google', 'Recommandation', 'Réseaux sociaux', 'Autre'];
 function aDays() {
   const out: { label: string; day: string }[] = [];
   const d = new Date(); d.setDate(d.getDate() + 1);
@@ -478,7 +498,7 @@ function Assistant() {
   const emailOk = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(e);
 
   const finish = async (slot: string) => {
-    const fd = { ...data, Slot: slot }; push('user', slot); setData(fd); setSending(true); setErr('');
+    const fd: Record<string, string> = { ...data, Slot: slot }; push('user', slot); setData(fd); setSending(true); setErr('');
     const payload = { access_key: CONFIG.WEB3FORMS_KEY, subject: `🔥 Nouveau lead — ${fd.Sujet || 'Demande'} — ${fd.Nom || ''}`, from_name: 'Assistant Ouakan Solutions', Sujet: fd.Sujet || '—', Besoin: fd.Besoin || '—', 'Taille équipe': fd.Equipe || '—', 'Échéance': fd.Urgence || '—', Nom: fd.Nom || '—', Entreprise: fd.Entreprise || '—', Email: fd.Email || '—', 'Téléphone': fd.Tel || '—', Format: fd.Format || '—', 'RDV souhaité': `${fd.Jour} à ${slot}` };
     try { const r = await fetch(CONFIG.FORM_ENDPOINT, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload) }); if (!r.ok) throw new Error(); setDone(true); push('bot', `Merci ${(fd.Nom || '').split(' ')[0]} ! 🎉 Votre demande est bien envoyée. Nous confirmons votre rendez-vous par email très vite.`); }
     catch { setErr(`Envoi impossible. Écrivez-nous à ${CONFIG.EMAIL}`); }
@@ -519,25 +539,25 @@ function Assistant() {
             {step === 0 && !done && <button className="btn-p" style={{ width: '100%' }} onClick={start}>Démarrer →</button>}
             {step === 1 && <div className="chip-wrap">{A_SUBJECTS.map(([ic, k]) => <button key={k} className="chip" onClick={() => pick('Sujet', k, 2)}>{ic} {k}</button>)}</div>}
             {step === 2 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Besoin', 3)} placeholder="Votre besoin…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Besoin', 3)} aria-label="Envoyer">→</button></div>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Votre besoin" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Besoin', 3)} placeholder="Votre besoin…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Besoin', 3)} aria-label="Envoyer">→</button></div>
               <button className="asst-skip" onClick={() => skip(3)}>Passer cette étape →</button>
             </div>}
             {step === 3 && <div className="chip-wrap">{A_TEAM.map(t => <button key={t} className="chip" onClick={() => pick('Equipe', t, 4)}>{t}</button>)}</div>}
             {step === 4 && <div className="chip-wrap">{A_URGENCY.map(u => <button key={u} className="chip" onClick={() => pick('Urgence', u, 5)}>{u}</button>)}</div>}
             {step === 5 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim().length > 1 && submitText('Nom', 6)} placeholder="Prénom et nom" /><button className="chat-send" style={{ opacity: text.trim().length > 1 ? 1 : .4 }} disabled={text.trim().length <= 1} onClick={() => submitText('Nom', 6)} aria-label="Envoyer">→</button></div>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Prénom et nom" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim().length > 1 && submitText('Nom', 6)} placeholder="Prénom et nom" /><button className="chat-send" style={{ opacity: text.trim().length > 1 ? 1 : .4 }} disabled={text.trim().length <= 1} onClick={() => submitText('Nom', 6)} aria-label="Envoyer">→</button></div>
               <div className="asst-req">Requis pour préparer votre rendez-vous</div>
             </div>}
             {step === 6 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Entreprise', 7)} placeholder="Nom de l'entreprise…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Entreprise', 7)} aria-label="Envoyer">→</button></div>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" aria-label="Nom de l'entreprise" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim() && submitText('Entreprise', 7)} placeholder="Nom de l'entreprise…" /><button className="chat-send" style={{ opacity: text.trim() ? 1 : .4 }} disabled={!text.trim()} onClick={() => submitText('Entreprise', 7)} aria-label="Envoyer">→</button></div>
               <button className="asst-skip" onClick={() => skip(7)}>Passer cette étape →</button>
             </div>}
             {step === 7 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="email" inputMode="email" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && emailOk(text.trim()) && submitText('Email', 8)} placeholder="email@entreprise.fr" /><button className="chat-send" style={{ opacity: emailOk(text.trim()) ? 1 : .4 }} disabled={!emailOk(text.trim())} onClick={() => submitText('Email', 8)} aria-label="Envoyer">→</button></div>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="email" inputMode="email" aria-label="Email professionnel" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && emailOk(text.trim()) && submitText('Email', 8)} placeholder="email@entreprise.fr" /><button className="chat-send" style={{ opacity: emailOk(text.trim()) ? 1 : .4 }} disabled={!emailOk(text.trim())} onClick={() => submitText('Email', 8)} aria-label="Envoyer">→</button></div>
               <div className="asst-req">Nous y enverrons la confirmation</div>
             </div>}
             {step === 8 && <div className="asst-field">
-              <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="tel" inputMode="tel" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim().length > 5 && submitText('Tel', 9)} placeholder="06 12 34 56 78" /><button className="chat-send" style={{ opacity: text.trim().length > 5 ? 1 : .4 }} disabled={text.trim().length <= 5} onClick={() => submitText('Tel', 9)} aria-label="Envoyer">→</button></div>
+              <div className="chat-input-row"><input ref={inputRef} className="chat-in" type="tel" inputMode="tel" aria-label="Numéro de téléphone" value={text} onChange={e => setText(e.target.value)} onKeyDown={e => e.key === 'Enter' && text.trim().length > 5 && submitText('Tel', 9)} placeholder="06 12 34 56 78" /><button className="chat-send" style={{ opacity: text.trim().length > 5 ? 1 : .4 }} disabled={text.trim().length <= 5} onClick={() => submitText('Tel', 9)} aria-label="Envoyer">→</button></div>
               <div className="asst-req">Requis pour vous joindre</div>
             </div>}
             {step === 9 && <div className="chip-wrap">{A_FORMAT.map(fm => <button key={fm} className="chip" onClick={() => pick('Format', fm, 10)}>{fm === 'Visioconférence' ? '🎥' : '📞'} {fm}</button>)}</div>}
@@ -556,7 +576,33 @@ function Assistant() {
   );
 }
 
+/* ═══ CTA STICKY MOBILE ═══ */
+function MobileCTA() {
+  return (
+    <div className="mobile-cta">
+      <button className="btn-p" style={{ width: '100%' }} onClick={() => document.getElementById('rdv')?.scrollIntoView({ behavior: 'smooth' })}>
+        Prendre rendez-vous →
+      </button>
+    </div>
+  );
+}
+
 /* ═══ APP ═══ */
+function Home() {
+  return (<><Nav /><Hero /><BeforeAfter /><Testimonials /><Agents /><Services /><Methode /><Security /><FAQ /><RDV /><Footer /><Assistant /><MobileCTA /></>);
+}
+
 export default function App() {
-  return (<><Nav /><Hero /><BeforeAfter /><Agents /><Services /><Methode /><Testimonials /><Security /><FAQ /><RDV /><Footer /><Assistant /></>);
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/mentions-legales" element={<MentionsLegales />} />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
+        <Route path="/cgv" element={<CGV />} />
+        <Route path="/cookies" element={<Cookies />} />
+      </Routes>
+      <CookieConsent />
+    </BrowserRouter>
+  );
 }

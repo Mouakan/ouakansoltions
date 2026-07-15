@@ -41,7 +41,7 @@ function Nav() {
   const [scr, setScr] = useState(false);
   const [mo, setMo] = useState(false);
   useEffect(() => { const f = () => setScr(window.scrollY > 24); window.addEventListener('scroll', f); return () => window.removeEventListener('scroll', f); }, []);
-  const links = [['Agents IA', 'agents'], ['Services', 'services'], ['Méthode', 'methode'], ['FAQ', 'faq']];
+  const links = [['Agents IA', 'agents'], ['Services', 'services'], ['Méthode', 'methode'], ['Réalisations', 'realisations'], ['FAQ', 'faq']];
   const go = (id: string) => { setMo(false); setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 10); };
   return (
     <nav className={scr ? 'scr' : ''} style={!scr ? { background: 'transparent' } : {}}>
@@ -100,7 +100,7 @@ function Hero() {
 /* ═══ AVANT/APRÈS ═══ */
 function BeforeAfter() {
   return (
-    <section className="sec">
+    <section className="sec sec-dark">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Le déclic</span>
@@ -132,18 +132,18 @@ function BeforeAfter() {
 
 /* ═══ AGENTS ═══ */
 const AGENTS = [
-  { name: 'Pierre', role: 'Chasseur immobilier', ac: '#5B84FF', av: { skin: '#F0C29B', hair: '#4A3728', hairStyle: 'short' as const, shirt: '#2E5CFF' }, desc: "Conçu pour une agence immobilière : veille le marché, détecte les biens et alerte les agents avant la concurrence.", tasks: ['Scan des annonces en continu', 'Qualification automatique des leads', 'Relances acquéreurs personnalisées'] },
-  { name: 'Emma', role: "Gestionnaire d'emails", ac: '#00C2E0', av: { skin: '#FADCBC', hair: '#B4622D', hairStyle: 'long' as const, shirt: '#00A8C4' }, desc: "Déployée pour un cabinet de conseil : trie, priorise et pré-répond aux emails entrants, sans rien laisser passer.", tasks: ['Tri et priorisation intelligente', 'Réponses automatiques contextuelles', 'Extraction des demandes vers le CRM'] },
-  { name: 'Marc', role: 'Analyste data & reporting', ac: '#3DDBA5', av: { skin: '#E8B48C', hair: '#2B2B2B', hairStyle: 'side' as const, shirt: '#0BB07B', glasses: true }, desc: "Créé pour une PME industrielle : consolide les données, fiabilise les fichiers et génère les tableaux de bord chaque matin.", tasks: ['Consolidation multi-sources', 'Dashboards automatisés', 'Alertes sur KPIs critiques'] },
-  { name: 'Sofia', role: 'Assistante marketing', ac: '#F59E0B', av: { skin: '#D9A066', hair: '#1F1A17', hairStyle: 'bun' as const, shirt: '#E8890C' }, desc: "Imaginée pour un réseau de commerces : génère les contenus, programme les publications et analyse les retombées.", tasks: ['Création de contenus réguliers', 'Publication multi-réseaux planifiée', 'Rapports de performance'] },
-  { name: 'Lucas', role: 'Prospecteur commercial', ac: '#A78BFA', av: { skin: '#F0C29B', hair: '#6B4E2E', hairStyle: 'curly' as const, shirt: '#7C5CE0' }, desc: "Développé pour une société de services B2B : identifie les prospects idéaux et remplit l'agenda de RDV qualifiés.", tasks: ['Ciblage et enrichissement de leads', 'Séquences multi-canaux', 'Prise de RDV automatique'] },
-  { name: 'Nadia', role: 'Optimisatrice énergie', ac: '#3DDBA5', av: { skin: '#C68B59', hair: '#12100E', hairStyle: 'long' as const, shirt: '#0BB07B' }, desc: "Pensée pour un site industriel : analyse les consommations, détecte les dérives et propose des économies concrètes.", tasks: ['Suivi conso en temps réel', "Détection d'anomalies", "Recommandations d'économies"] },
-  { name: 'Hugo', role: 'Gestionnaire documentaire', ac: '#5B84FF', av: { skin: '#FADCBC', hair: '#8A8A8A', hairStyle: 'bald' as const, shirt: '#3D6BFF', glasses: true }, desc: "Bâti pour un cabinet comptable : lit factures et contrats, extrait les informations clés et classe tout automatiquement.", tasks: ['Lecture & extraction IA', 'Classement automatique', 'Recherche instantanée en archives'] },
-  { name: 'Inès', role: 'Maintenance prédictive', ac: '#F59E0B', av: { skin: '#E8B48C', hair: '#3D2817', hairStyle: 'bun' as const, shirt: '#DB7A0B' }, desc: "Conçue pour un industriel : surveille les équipements, anticipe les pannes et planifie les interventions avant l'arrêt.", tasks: ['Analyse des données capteurs', 'Prédiction des défaillances', 'Planification des interventions'] },
+  { name: 'Pierre', role: 'Chasseur immobilier', ac: '#5B84FF', av: { skin: '#F0C29B', hair: '#4A3728', hairStyle: 'short' as const, shirt: '#2E5CFF' }, tasks: ['Scan des annonces en continu', 'Qualification automatique des leads', 'Relances acquéreurs personnalisées'] },
+  { name: 'Emma', role: "Assistante emails d'un manager automobile", ac: '#00C2E0', av: { skin: '#FADCBC', hair: '#B4622D', hairStyle: 'long' as const, shirt: '#00A8C4' }, tasks: ['Tri et priorisation automatique des messages', 'Réponses pré-rédigées aux demandes récurrentes', "Extraction des tâches vers l'agenda"] },
+  { name: 'Marc', role: 'Sourcing LinkedIn pour un service RH', ac: '#3DDBA5', av: { skin: '#E8B48C', hair: '#2B2B2B', hairStyle: 'side' as const, shirt: '#0BB07B', glasses: true }, tasks: ['Ciblage de profils selon critères de poste', 'Séquences de messages personnalisés', 'Relances automatiques programmées'] },
+  { name: 'Sofia', role: "Marketing digital d'une boutique e-commerce", ac: '#F59E0B', av: { skin: '#D9A066', hair: '#1F1A17', hairStyle: 'bun' as const, shirt: '#E8890C' }, tasks: ['Planification des campagnes multi-canaux', 'Génération de visuels et contenus publicitaires', 'Analyse des performances et recommandations'] },
+  { name: 'Lucas', role: "Community manager d'un restaurant italien", ac: '#A78BFA', av: { skin: '#F0C29B', hair: '#6B4E2E', hairStyle: 'curly' as const, shirt: '#7C5CE0' }, tasks: ['Création de contenus (plats du jour, événements)', 'Programmation des publications', 'Réponses automatiques aux commentaires'] },
+  { name: 'Nadia', role: "Support client d'une agence de tourisme", ac: '#3DDBA5', av: { skin: '#C68B59', hair: '#12100E', hairStyle: 'long' as const, shirt: '#0BB07B' }, tasks: ['Réponses instantanées aux questions fréquentes', 'Escalade automatique des cas complexes', 'Suivi de la satisfaction post-échange'] },
+  { name: 'Hugo', role: 'Analyste NVH (bruit & vibration) automobile', ac: '#5B84FF', av: { skin: '#FADCBC', hair: '#8A8A8A', hairStyle: 'bald' as const, shirt: '#3D6BFF', glasses: true }, tasks: ['Analyse automatique des relevés vibratoires et acoustiques', "Détection des anomalies sur bancs d'essai", 'Génération des rapports de mesure'] },
+  { name: 'Inès', role: "Rédaction & publication de blog pour un cabinet d'avocats", ac: '#F59E0B', av: { skin: '#E8B48C', hair: '#3D2817', hairStyle: 'bun' as const, shirt: '#DB7A0B' }, tasks: ['Génération d\'articles optimisés SEO', 'Planification et publication automatique', 'Suggestions de sujets selon les tendances'] },
 ];
 function Agents() {
   return (
-    <section id="agents" className="sec">
+    <section id="agents" className="sec sec-dark">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Nos agents IA</span>
@@ -158,7 +158,6 @@ function Agents() {
                 <div className="agent-av" style={{ background: `${a.ac}18`, border: `1px solid ${a.ac}40` }}><Avatar {...a.av} size={54} /></div>
                 <div><div className="agent-name">{a.name}</div><div className="agent-role">{a.role}</div></div>
               </div>
-              <p className="agent-desc">{a.desc}</p>
               <div className="agent-tasks">{a.tasks.map(t => <div key={t} className="agent-task">{t}</div>)}</div>
             </div>
           ))}
@@ -168,6 +167,39 @@ function Agents() {
             <p className="agent-desc" style={{ marginBottom: 22 }}>Décrivez-nous vos tâches répétitives — on conçoit l'agent qui les prend en charge.</p>
             <button className="btn-p" style={{ width: '100%' }} onClick={() => document.getElementById('rdv')?.scrollIntoView({ behavior: 'smooth' })}>Obtenir mon audit gratuit</button>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ═══ RÉALISATIONS ═══ */
+const PROJECTS = [
+  { t: 'SONAR', d: "Outil d'aide au diagnostic : face à un défaut, il retrouve des cas similaires déjà résolus et guide vers la solution appliquée à l'époque.", tags: ['IA', 'RAG', 'Acoustique'] },
+  { t: 'SalonPilot', d: "Application de gestion pour salons : planning, encaissement, suivi des indicateurs de performance.", tags: ['React', 'SaaS', 'KPI'] },
+  { t: "Suivi d'étalonnage", d: "Application de gestion métrologique : suivi des échéances, rappels automatiques, gestion des prestataires.", tags: ['Automatisation', 'Métrologie'] },
+  { t: 'Plateforme de gestion — centre de formation football', d: "Application métier complète : gestion des catégories et des droits par éducateur, portail simplifié pour les parents, organisation du covoiturage entre familles.", tags: ['React', 'Application métier', 'Multi-profils'] },
+];
+function Realisations() {
+  const doubled = [...PROJECTS, ...PROJECTS];
+  return (
+    <section id="realisations" className="sec sec-dark testi-sec">
+      <div className="container">
+        <div className="sec-head">
+          <span className="kick">Réalisations</span>
+          <h2 className="h-sec">Des outils qui tournent déjà en production</h2>
+          <p className="sub">Quelques applications et automatisations livrées, au-delà des exemples d'agents IA présentés plus haut.</p>
+        </div>
+      </div>
+      <div className="marquee">
+        <div className="marquee-track">
+          {doubled.map((p, i) => (
+            <div key={i} className="card svc-card marquee-item">
+              <h3 className="svc-t">{p.t}</h3>
+              <p className="svc-d">{p.d}</p>
+              <div className="svc-tags">{p.tags.map(tag => <span key={tag} className="svc-tag">{tag}</span>)}</div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -185,7 +217,7 @@ const SERVICES = [
 ];
 function Services() {
   return (
-    <section id="services" className="sec sec-dark">
+    <section id="services" className="sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Nos services</span>
@@ -194,7 +226,7 @@ function Services() {
         </div>
         <div className="svc-grid">
           {SERVICES.map(s => (
-            <div key={s.t} className="card svc-card">
+            <div key={s.t} className="card svc-card real-card">
               <div className="svc-ic"><s.ic size={22} strokeWidth={2} /></div>
               <h3 className="svc-t">{s.t}</h3>
               <p className="svc-d">{s.d}</p>
@@ -218,7 +250,7 @@ const STEPS = [
 ] as const;
 function Methode() {
   return (
-    <section id="methode" className="sec">
+    <section id="methode" className="sec sec-dark">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Notre méthode</span>
@@ -242,17 +274,18 @@ function Methode() {
 /* ═══ TÉMOIGNAGES ═══ */
 const TESTIS = [
   ['MD', 'Marie D.', 'Directrice, agence immobilière', "Le suivi de nos leads est enfin automatisé. +35% de conversion en 6 semaines, et mon équipe respire."],
-  ['TB', 'Thomas B.', 'DAF, PME industrielle', "Notre reporting mensuel prenait 2 jours. Il se génère maintenant tout seul chaque matin. Bluffant."],
-  ['SL', 'Sophie L.', 'Gérante, réseau de salons', "Rendez-vous, relances, rappels : tout est automatique. Plus aucun créneau perdu, +22% de CA."],
-  ['KM', 'Karim M.', 'Fondateur, cabinet de courtage', "L'agent IA trie et qualifie nos demandes entrantes. On répond 3 fois plus vite que nos concurrents."],
-  ['CV', 'Claire V.', 'Responsable ADV, distributeur B2B', "Les commandes passent seules de l'email à l'ERP. Zéro ressaisie, zéro erreur depuis 4 mois."],
-  ['JP', 'Jean-Pierre R.', 'Dirigeant, société de transport', "La facturation et les relances sont automatisées. Notre délai de paiement moyen a chuté de 18 jours."],
-  ['AL', 'Amélie L.', "Office manager, cabinet d'expertise", "Les documents clients sont lus et classés automatiquement. Je gagne une journée entière par semaine."],
+  ['YB', 'Yassine B.', 'Manager, concession automobile', "Mes emails clients et fournisseurs sont triés avant même que j'arrive au bureau. Je ne perds plus rien dans le flot quotidien."],
+  ['CR', 'Camille R.', 'Responsable RH, PME industrielle', "Le sourcing LinkedIn qui me prenait des heures chaque semaine tourne maintenant tout seul. Mes shortlists sont prêtes le lundi matin."],
+  ['GM', 'Giulia M.', 'Gérante, restaurant italien', "Nos réseaux sociaux étaient à l'abandon. Aujourd'hui les publications et les réponses aux avis se font seules, et ça se voit sur les réservations."],
+  ['JP', 'Julien P.', 'Fondateur, boutique e-commerce', "Mes campagnes sont planifiées et mes visuels générés automatiquement. +18% de trafic en 2 mois."],
+  ['NF', 'Nicolas F.', 'Ingénieur, équipementier automobile', "SONAR retrouve en quelques secondes des cas similaires à nos défauts vibratoires. Ce qui prenait une demi-journée d'analyse se fait maintenant instantanément."],
+  ['SL', 'Sophie L.', 'Gérante, institut de beauté', "SalonPilot gère nos plannings et notre encaissement au quotidien. Plus aucun créneau perdu, +22% de CA."],
+  ['AD', 'Antoine D.', 'Responsable, centre de formation sportif', "La plateforme gère les catégories, les droits des éducateurs et le covoiturage entre familles. Un vrai gain de temps pour toute l'équipe."],
 ];
 function Testimonials() {
   const doubled = [...TESTIS, ...TESTIS];
   return (
-    <section className="sec sec-dark testi-sec">
+    <section className="sec testi-sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick">Ils nous font confiance</span>
@@ -263,7 +296,7 @@ function Testimonials() {
       <div className="marquee">
         <div className="marquee-track">
           {doubled.map(([av, n, r, q], i) => (
-            <div key={i} className="card testi-c marquee-item">
+            <div key={i} className="card testi-c real-card marquee-item">
               <div className="testi-stars">{Array.from({ length: 5 }).map((_, si) => <Star key={si} size={14} fill="currentColor" strokeWidth={0} />)}</div>
               <p className="testi-q">"{q}"</p>
               <div className="testi-a"><div className="testi-av">{av}</div><div><div className="testi-n">{n}</div><div className="testi-r">{r}</div></div></div>
@@ -278,7 +311,7 @@ function Testimonials() {
 /* ═══ SÉCURITÉ ═══ */
 function Security() {
   return (
-    <section className="sec sec-dark">
+    <section className="sec">
       <div className="container">
         <div className="sec-head">
           <span className="kick"><Lock size={12} /> Sécurité & confidentialité</span>
@@ -590,7 +623,7 @@ function MobileCTA() {
 
 /* ═══ APP ═══ */
 function Home() {
-  return (<><Nav /><Hero /><BeforeAfter /><Testimonials /><Agents /><Services /><Methode /><Security /><FAQ /><RDV /><Footer /><Assistant /><MobileCTA /></>);
+  return (<><Nav /><Hero /><BeforeAfter /><Testimonials /><Agents /><Services /><Methode /><Security /><Realisations /><FAQ /><RDV /><Footer /><Assistant /><MobileCTA /></>);
 }
 
 export default function App() {

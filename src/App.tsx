@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
-import { Bot, Zap, BarChart3, Monitor, Link2, GraduationCap, Handshake, Search, Target, Wrench, Rocket, RefreshCw, Globe, Lock, FileText, Ban, Key, RotateCcw, Video, Phone, MessageCircle, AlertTriangle, PenLine, Star } from 'lucide-react';
+import { Bot, Zap, BarChart3, Monitor, Link2, GraduationCap, Handshake, Search, Target, Wrench, Rocket, RefreshCw, Globe, Lock, FileText, Ban, Key, RotateCcw, Video, Phone, MessageCircle, AlertTriangle, PenLine, Star, Sparkles, Database, Mic } from 'lucide-react';
+import { SiClaude, SiGooglegemini, SiSupabase, SiN8n, SiMake, SiZapier, SiPython, SiReact, SiVercel, SiAirtable, SiLangchain, SiElevenlabs } from '@icons-pack/react-simple-icons';
 import { MentionsLegales, PolitiqueConfidentialite, CGV, Cookies } from './Legal';
 import CookieConsent from './CookieConsent';
 import './index.css';
@@ -328,6 +329,43 @@ function Security() {
   );
 }
 
+/* ═══ STACK TECHNIQUE ═══ */
+const STACK = [
+  ['Modèles / LLM', [['GPT', Sparkles], ['Claude', SiClaude], ['Gemini', SiGooglegemini]]],
+  ['RAG & bases vectorielles', [['Supabase (pgvector)', SiSupabase], ['Chroma', Database]]],
+  ['Orchestration & automatisation', [['n8n', SiN8n], ['Make', SiMake], ['Zapier', SiZapier]]],
+  ['Développement & déploiement', [['Python', SiPython], ['React', SiReact], ['Vercel', SiVercel], ['Airtable', SiAirtable]]],
+  ['Frameworks agents', [['LangChain', SiLangchain], ['Assistants API', Bot]]],
+  ['Voix & transcription', [['ElevenLabs', SiElevenlabs], ['Whisper', Mic]]],
+] as const;
+function Stack() {
+  return (
+    <section id="stack" className="sec sec-dark">
+      <div className="container">
+        <div className="sec-head">
+          <span className="kick">Environnement & outils IA</span>
+          <h2 className="h-sec">Des outils reconnus, pas une boîte noire</h2>
+          <p className="sub">Le choix des outils s'adapte à chaque projet — voici les briques que nous utilisons le plus souvent.</p>
+        </div>
+        <div className="stack-wrap">
+          {STACK.map(([cat, tools]) => (
+            <div key={cat} className="card stack-card">
+              <div className="stack-cat-t">{cat}</div>
+              <div className="stack-chips">
+                {tools.map(([name, Icon]) => (
+                  <div key={name} className="stack-chip"><Icon size={16} /><span>{name}</span></div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="stack-tech"><b>Techniques</b> — RAG (génération augmentée par récupération), function calling, prompt engineering, traitement de documents, intégrations API (REST, webhooks), connexion CRM / ERP.</p>
+        <p className="stack-more">Et bien d'autres outils selon les besoins spécifiques de chaque projet — cette liste évolue en continu.</p>
+      </div>
+    </section>
+  );
+}
+
 /* ═══ FAQ ═══ */
 const FAQS = [
   ["Combien coûte une mission d'automatisation ?", "Chaque projet est chiffré après l'audit gratuit. Vous connaissez toujours le prix exact avant de vous engager, et le ROI estimé avec."],
@@ -623,7 +661,7 @@ function MobileCTA() {
 
 /* ═══ APP ═══ */
 function Home() {
-  return (<><Nav /><Hero /><BeforeAfter /><Testimonials /><Agents /><Services /><Methode /><Security /><Realisations /><FAQ /><RDV /><Footer /><Assistant /><MobileCTA /></>);
+  return (<><Nav /><Hero /><BeforeAfter /><Testimonials /><Agents /><Services /><Methode /><Security /><Realisations /><Stack /><FAQ /><RDV /><Footer /><Assistant /><MobileCTA /></>);
 }
 
 export default function App() {
